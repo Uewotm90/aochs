@@ -1,3 +1,3 @@
 # Prerequisites
 - Haskell
-```ghc -I. --make Parsing.hs```
+- ```ghc -I. --make Parsing.hs```
