@@ -12,8 +12,8 @@ main = do
   print pwd
   input <- readFile "./input/input.txt"
   --   input <- test
-  print $ solve $ parse Main.lines "input" test
-  print $ solve2 $ parse Main.lines "input" test
+  print $ solve $ parse Main.lines "input" input
+  print $ solve2 $ parse Main.lines "input" input
 
 test = "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82\n"
 
@@ -22,7 +22,7 @@ solve (Left a) = undefined
 solve (Right b) = length . filter (== 0) $ foldr (\c acc -> rotateDial (head acc) c : acc) [50] $ reverse b
 
 solve2 (Left _) = undefined
-solve2 (Right b) = foldr (\(a, b) acc -> acc + b + if a == 0 then 1 else 0) 0 $ foldr (\c acc -> rotateDial2 (fst $ head acc) c : acc) [(50, 0)] $ reverse b
+solve2 (Right b) = foldr (\(a, b) acc -> acc + b + if a == 0 then 0 else 0) 0 $ foldr (\c acc -> rotateDial2 (fst $ head acc) c : acc) [(50, 0)] $ reverse b
 
 rotateDial :: Int -> (Char, Int) -> Int
 rotateDial d ('L', n)
