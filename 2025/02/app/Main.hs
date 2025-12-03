@@ -60,6 +60,7 @@ patt2' s = isRight $ parse (parsers $ reverse subs) "combinations" s -- ? no ide
       --   notFollowedBy digit
       return ()
     parsers xs = try . choice  $ map p xs -- try all combinations, short ciruit if one succeeds
+    -- parsers xs = foldr (<|>) $ map p xs
 
 -- idea: parse subsequence repeatedly until consumed
 subs s = filter (\ss -> length s `rem` length ss == 0 && length ss <= (length s `div` 2)) $ drop 1 $ inits s
