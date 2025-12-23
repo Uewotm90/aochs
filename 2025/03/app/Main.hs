@@ -2,6 +2,7 @@ module Main (main) where
 
 import Data.Either
 import Text.Parsec
+import Data.List (sort)
 
 main :: IO ()
 main = do
@@ -10,8 +11,9 @@ main = do
   inp <- readFile "./input/input.txt"
   print $ solve1 $ parser inp
 
-test = "987654321111111\n811111111111119\n234234234234278\n818181911112111"
+-- testing
 
+test = "987654321111111\n811111111111119\n234234234234278\n818181911112111"
 testInput = fromRight [] $ parser test
 
 input = do 
@@ -33,6 +35,12 @@ allCombs [_] = []
 allCombs (x : xs) = (x, maximum xs) : allCombs xs
 
 -- logic2
+-- combs _ [] = []
+-- combs _ [_] = []
+-- combs n xs | length xs < n = [] 
+-- combs n (x:xs) = [x:( maximum $ subs n-1 xs)]:[]
+--     where
+--         subs m (y:ys) = undefined
 
 -- parsing
 parser :: String -> Either ParseError [[Int]]
